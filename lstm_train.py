@@ -116,7 +116,7 @@ class EarlyStoppingByFscore(Callback):
             print('Epoch %05d: early stopping\n' % (self.stopped_epoch + 1))
 
 
-for kpi_name in kpi_names[1:2]:
+for kpi_name in kpi_names:
     print("kpi_name: {}".format(kpi_name))
     kpi_df = train_interpolate_df[train_interpolate_df['KPI ID'] == kpi_name]
     kpi_size = len(kpi_df)
