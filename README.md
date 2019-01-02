@@ -33,7 +33,9 @@
 
 ## Model(模型)
 采用的模型很简单，使用的是双层LSTM(没有尝试三层，因为训练时间直接double...)。
-输入是当前时间点的前120(2小时)个点所构成的sliding window, 输出是next sliding window(即向后滑动一步)，也可以输出当前时间点。即120 -> 120 或 120 -> 1。
+输入是当前时间点的前120(2小时)个点所构成的sliding window, 输出是next sliding window(即向后滑动一步)，也可以输出当前时间点。
+即120 -> 120 或 120 -> 1。
+
 |Parameter|Name|
 |:-:|:-:|
 |batch size|128|
@@ -42,7 +44,8 @@
 |classifier|Softmax|
 
 评估是针对验证集上的f_score进行评估。而对于一些异常点非常少的KPI，其验证集上的f_score始终为0。
-于是我们重写loss函数，针对其FN(漏报)的部分进行惩罚(penalty)。如果预测结果漏报了，相应的loss为增加。
+于是我们重写loss函数，针对其FN(漏报)的部分进行惩罚(penalty)。如果在验证集上，FN很多，则相应的loss也会很大。
+这样可以迫使模型尽可能的检测出异常点。
 
 ## Result
 最后取得的f_score是0.746，相比于第一名少了0.02。
