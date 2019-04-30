@@ -1,5 +1,4 @@
-# anomaly_detection
-基于LSTM的异常检测
+# 基于LSTM的异常检测
 
 ## Introduction(简介)
 这是AIOps的一个[异常检测竞赛项目](http://iops.ai)。
